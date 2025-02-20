@@ -11,7 +11,6 @@ jobs = [job.strip() for job in jobs]
 
 file_name = 'ExtractedData.xlsx'
 
-# بررسی اگر فایل اکسل موجود بود، آن را بارگذاری کنیم و در غیر این صورت فایل جدید بسازیم.
 try:
     wb = openpyxl.load_workbook(file_name)
     ws = wb.active
@@ -20,19 +19,17 @@ except FileNotFoundError:
     ws = wb.active
     ws.append(["Name", "Job"])
 
-# بررسی که اگر لینکدین ممبر باشد، فقط آخرین شغل وارد نشود
-last_added = False  # این متغیر برای شناسایی اینکه آخرین شغل وارد شده است یا نه استفاده می‌شود.
+last_added = False  
 
 for name, job in zip(names, jobs):
-    if "LinkedIn Member" in name and not last_added:  # اگر "LinkedIn Member" در نام باشد و شغل آخر هنوز وارد نشده باشد
-        last_added = True  # پس از این شغل، وارد کردن شغل آخر متوقف می‌شود
-        continue  # از وارد کردن این شغل صرف نظر کن
+    if "LinkedIn Member" in name and not last_added:  
+        last_added = True  
+        continue 
     elif last_added:
-        last_added = False  # پس از نادیده گرفتن شغل آخر، وارد کردن داده‌ها از سر گرفته می‌شود
+        last_added = False 
         continue
     else:
-        ws.append([name, job])  # نام و شغل را اضافه کن
+        ws.append([name, job])  
 
-# ذخیره فایل اکسل
 wb.save(file_name)
 print(f"Data has been saved to '{file_name}'.")
