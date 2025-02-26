@@ -13,7 +13,7 @@ This Python script uses Selenium to scrape data from LinkedIn company pages. It 
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo-url.git
+   git clone https://github.com/llsohrabll/LinkedIn-Scrapper
    cd your-repo-folder
    ```
 
